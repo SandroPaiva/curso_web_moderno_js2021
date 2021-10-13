@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercícios HTML</title>
+    <style>
+    
+    #conteudo {
+        padding: 30px 0px;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Exercícios HTML</h1>
+    </header>
+    <nav>
+        <a href wm-nav="exercicios/teste.html">00 - Teste</a> |
+        <a href wm-nav="exercicios/texto1.html">01 - Texto1</a> |
+        <a href wm-nav="exercicios/texto2.html">02 - Texto2</a> |
+        <a href wm-nav="exercicios/listas.html">03 - Listas</a> | 
+        <a href wm-nav="exercicios/listaAninhada.html">04 - Listas Aninhada</a> |
+        <a href wm-nav="exercicios/links.html">05 - Links</a> |
+        <a href wm-nav="exercicios/tabela.html">06 - Tabela</a> |
+        <a href wm-nav="exercicios/form/form.html">07 - Formulário</a> |
+           </nav>
+    <section id="conteudo"></section>
+    <footer>
+        Curso de Web Moderno
+    </footer>
+    <script>
+        //interceptação dos links da pagina, o querySelectorAll('wm-nav').forEach mapeia todos os links da pagina
+        document.querySelectorAll('[wm-nav]').forEach(link => {
+            //o getElementById permite que seja definida qual SECTION o link será direcionado pelo ID dele.
+            const conteudo = document.getElementById('conteudo')
+            /*quando o usuario clicar no link chamará uma ação definido pela função, que no caso será direiconar
+            o conteúdo do link para a SECTION 'conteudo' */
+            link.onclick = function(e) {
+                //o preventDefault() armasena o link clicado e impede a navegação para que o fetch funcione
+                e.preventDefault()
+                    /* chamada ajax fetch para puxar o link (link.href) */
+                    fetch(link.getAttribute('wm-nav'))
+                    /*captura o conteúdo textual do html da pagina requisitada ao clicar no link 
+                    para exibir na SECTION */
+                    .then(resp => resp.text())
+                    /* executa a ação que substirui o conteudo da SECTION 'conteudo' */
+                    .then(html => conteudo.innerHTML = html)
+
+            }
+        })
+        
+    </script>
+</body>
+</html>

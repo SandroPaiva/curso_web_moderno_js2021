@@ -22,7 +22,7 @@ console.log(soma02(3));
 console.log(soma02(1,2,3));
 console.log(soma02(0,0,0));//nesse caso o Zero é tratado como numero.
 
-//valor padrão do ES2015
+//valor padrão do ES2015 que é a usada hoje em dia
 function soma03(a=1, b=1, c=1){
     return a+b+c;
 }
